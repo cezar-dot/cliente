@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<script type="text/javascript">
+    function DB(nome, senha) {
+
+        try {
+            var myConnect = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"C:\\bd\\TB_Usuario_Login.accdb\"";
+            alert("A função DB foi chamada.");
+            ConnectObj = new ActiveXObject("ADODB.Connection");
+            var RS = new ActiveXObject("ADODB.Recordset");
+            alert("Segundo ACtive.");
+            var sql = "INSERT INTO Registro(Usuario_Login, Usuario_Senha('" + Usuario_Login + "', '" + Usuario_Senha + "')";
+            ConnectObj.Open(myConnect);
+            RS.Open(sql, ConnectObj, adOpenForwardOnly, adLockReadOnly, adCmdText);
+            var fieldCount = RS.Fields.Count;
+        } catch (erro) {
+            alert(erro.message);
+        }
+        alert("Field Count" + fieldCount);
+        RS.Close();
+        ConnectObj.Close();
+    }
+</script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css\estilo.css">
+
+
+    <title>Login</title>
+</head>
+
+<body>
+
+    <form name="form" class="box">
+        <h1>Start</h1>
+        <input type="text" name="nome" placeholder="Digite seu usuário" autocomplete="off">
+        <input type="password" name="senha" placeholder="Digite sua senha" autocomplete="off">
+        <input class="bot" type="button" name="botao" placeholder="Login" value="Acessar" onclick="acesso(this.form)">
+        <input type="button" onclick=DB(form.nome.value,form.senha.value,) value="Salvar" />
+        <input type="button" value="submit" onclick="Send_Data()" />
+        <div class="cadastar"> <a href="indexValidacao.html" id="" class="cadastrar"> cadastrar</a> </div>
+
+    </form>
+    <script src="js/acesso.js"></script>
+
+
+</body>
+
+</html>
